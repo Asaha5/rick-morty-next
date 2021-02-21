@@ -1,0 +1,79 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+  width: 100%;
+}
+
+.grid .section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 500px;
+  
+}
+
+.grid .section.episodes {
+  max-height: 100%;
+  max-width: 600px;
+  overflow-y: auto;
+}
+
+.card {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem;
+  width: 500px;
+  height: 240px;
+  padding: 1.2rem;
+  text-align: left;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.card .imgWrapper {
+  flex: 2 1 0%;
+  width: 100%;
+}
+
+.card .contentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 250px;
+  padding: 15px;
+  word-wrap: break-word;
+}
+
+.card.episode{
+  margin: .5rem;
+  width: 500px;
+  height: 150px;
+  padding: 1.2rem;
+}
+
+.card.episode .imgWrapper {
+  width: 100%;
+}
+
+.card.episode .contentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 200px;
+  padding: 10px;
+  word-wrap: break-word;
+}
