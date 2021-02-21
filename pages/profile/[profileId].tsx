@@ -62,9 +62,9 @@ export default function Profile({
         </div>
       </div>
       <div className={classnames(styles.section, styles.episodes)}>
-        {episodes.map((episode) => {
+        {episodes && episodes.map((episode) => {
           return (
-            <div className={classnames(styles.card, styles.episode)}>
+            <div key={episode.id} className={classnames(styles.card, styles.episode)}>
               <div className={styles.imgWrapper}>
                 <h3>{episode.name}</h3>
               </div>
