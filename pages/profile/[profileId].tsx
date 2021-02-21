@@ -151,8 +151,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
       profile = {
         ...profile,
-        episodes: episodes ?? [],
+        episodes: episodes ? (Array.isArray(episodes) ? episodes : [episodes]) : []
       };
+      console.log(profile)
       return {
         props: {
           profile,
