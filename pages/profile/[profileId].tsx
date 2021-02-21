@@ -58,8 +58,8 @@ export default function Profile({
             </div>
             <div className={styles.contentWrapper}>
               {location && <h3>{location.name}</h3>}
-              {location && <p>{`Type - ${origin.type}`}</p>}
-              {location && <p>{`Dimension - ${origin.dimension}`}</p>}
+              {location && <p>{`Type - ${location.type}`}</p>}
+              {location && <p>{`Dimension - ${location.dimension}`}</p>}
               {location && (
                 <p>{`Total number of Residents - ${location.residents?.length}`}</p>
               )}
