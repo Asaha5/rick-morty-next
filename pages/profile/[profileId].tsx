@@ -123,7 +123,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       urls.push(`${episodeUrlBase}${episodeIds.join(",")}`);
       const [originAndLocationDetails, episodes]: [
         Array<Location>,
-        Array<Episode>
+        Array<Episode> | Episode
       ] = await requestMany(urls);
 
       if (originAndLocationDetails && originAndLocationDetails.length > 0) {
