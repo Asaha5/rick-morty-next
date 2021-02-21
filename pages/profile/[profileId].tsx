@@ -67,7 +67,7 @@ export default function Profile({
           </div>
         </div>
         <div className={classnames(styles.section)}>
-          <Episodes episodes={episodes} />
+          {episodes && <Episodes episodes={episodes} />}
         </div>
       </div>
     </div>
@@ -82,8 +82,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
     params: { profileId },
   } = context;
   try {
-    const urls: string[] = [];
-    const locationIds: string[] = [];
     let episodeIds: string[] = [];
     if (profileId) {
       const characterDetails = await request({
@@ -97,56 +95,35 @@ export const getStaticProps: GetStaticProps = async (context) => {
       if (
         characterDetails &&
         characterDetails.origin &&
-        characterDetails.origin.url
+        characterDetails.origin.url &&
+        characterDetails.origin.url !== ""
       ) {
-        locationIds.push(
-          characterDetails.origin.url.replace(locationUrlBase, "")
-        );
-      }
-
+        const origin = await request({url: characterDetails.origin.url})
+        profile = {
+          ...profile,
+          origin,
+        };
+      } 
       if (
         characterDetails &&
         characterDetails.location &&
-        characterDetails.location.url
+        characterDetails.location.url &&
+        characterDetails.location.url !== ""
       ) {
-        locationIds.push(
-          characterDetails.location.url.replace(locationUrlBase, "")
-        );
-      }
+        const location = await request({url: characterDetails.location.url})
+        profile = {
+          ...profile,
+          location,
+        };
+      } 
 
       if (characterDetails && characterDetails.episode) {
         episodeIds = characterDetails.episode.map((episodeUrl) =>
           episodeUrl.replace(episodeUrlBase, "")
         );
       }
-      urls.push(`${locationUrlBase}${locationIds.join(",")}`);
-      urls.push(`${episodeUrlBase}${episodeIds.join(",")}`);
-      const [originAndLocationDetails, episodes]: [
-        Array<Location>,
-        Array<Episode> | Episode
-      ] = await requestMany(urls);
 
-      if (originAndLocationDetails && originAndLocationDetails.length > 0) {
-        const origin = originAndLocationDetails[0];
-        profile = {
-          ...profile,
-          origin: origin ?? {},
-        };
-      }
-
-      if (originAndLocationDetails && originAndLocationDetails.length > 1) {
-        const location = originAndLocationDetails[1];
-        profile = {
-          ...profile,
-          location: location ?? {},
-        };
-      } else {
-        const location = originAndLocationDetails[0];
-        profile = {
-          ...profile,
-          location: location ?? {},
-        };
-      }
+      const episodes = await request({url : `${episodeUrlBase}${episodeIds.join(",")}`})
 
       profile = {
         ...profile,
@@ -158,7 +135,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       };
       return {
         props: {
-          profile,
+          profile
         },
       };
     }
