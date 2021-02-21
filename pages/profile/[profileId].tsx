@@ -44,8 +44,8 @@ export default function Profile({
           </div>
           <div className={styles.contentWrapper}>
             {origin && <h3>{origin.name}</h3>}
-            {origin && <h3>{origin.type}</h3>}
-            {origin && <h3>{origin.dimension}</h3>}
+            {origin && <p>{origin.type}</p>}
+            {origin && <p>{origin.dimension}</p>}
             {origin && <p>{`Total number of Residents - ${origin.residents?.length}`}</p>}
           </div>
         </div>
@@ -55,8 +55,8 @@ export default function Profile({
           </div>
           <div className={styles.contentWrapper}>
             {location && <h3>{location.name}</h3>}
-            {location && <h3>{location.type}</h3>}
-            {location && <h3>{location.dimension}</h3>}
+            {location && <p>{location.type}</p>}
+            {location && <p>{location.dimension}</p>}
             {location && <p>{`Total number of Residents - ${location.residents?.length}`}</p>}
           </div>
         </div>
@@ -153,7 +153,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
         ...profile,
         episodes: episodes ? (Array.isArray(episodes) ? episodes : [episodes]) : []
       };
-      console.log(profile)
       return {
         props: {
           profile,
