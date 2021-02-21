@@ -4,9 +4,18 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies & run the development server:
+
 
 ```bash
+# If you want to use yarn, install it first if not installed already
+
+npm install -g yarn
+
+npm install
+# or
+yarn
+
 npm run dev
 # or
 yarn dev
