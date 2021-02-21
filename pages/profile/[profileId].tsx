@@ -9,7 +9,8 @@ import type {
 } from "../../core/types";
 import request, { requestMany } from "../../core/src/request";
 import styles from "../../styles/Profile.module.css";
-import classnames from 'classnames'
+import classnames from "classnames";
+import Episodes from "../../core/components/episodes";
 
 type ProfileType = {
   characterDetails: Character;
@@ -28,55 +29,47 @@ export default function Profile({
   return (
     <div className={styles.container}>
       <div className={styles.grid}>
-      <div className={styles.section}>
-        <div className={styles.card}>
-          <div className={styles.imgWrapper}>
-            <Image src={character.image} height={180} width={180} />
-          </div>
-          <div className={styles.contentWrapper}>
-            <h3>{character.name}</h3>
-            <p>{`${character.status} - ${character.species}`}</p>
-          </div>
-        </div>
-        <div className={styles.card}>
-          <div className={styles.imgWrapper}>
-            <h3>Origin</h3>
-          </div>
-          <div className={styles.contentWrapper}>
-            {origin && <h3>{origin.name}</h3>}
-            {origin && <p>{origin.type}</p>}
-            {origin && <p>{origin.dimension}</p>}
-            {origin && <p>{`Total number of Residents - ${origin.residents?.length}`}</p>}
-          </div>
-        </div>
-        <div className={styles.card}>
-          <div className={styles.imgWrapper}>
-            <h3>Location</h3>
-          </div>
-          <div className={styles.contentWrapper}>
-            {location && <h3>{location.name}</h3>}
-            {location && <p>{location.type}</p>}
-            {location && <p>{location.dimension}</p>}
-            {location && <p>{`Total number of Residents - ${location.residents?.length}`}</p>}
-          </div>
-        </div>
-      </div>
-      <div className={classnames(styles.section, styles.episodes)}>
-        {episodes && episodes.map((episode) => {
-          return (
-            <div key={episode.id} className={classnames(styles.card, styles.episode)}>
-              <div className={styles.imgWrapper}>
-                <h3>{episode.name}</h3>
-              </div>
-              <div className={styles.contentWrapper}>
-                <p>{episode.air_date}</p>
-                <p>{episode.created}</p>
-              </div>
+        <div className={styles.section}>
+          <div className={styles.card}>
+            <div className={styles.imgWrapper}>
+              <Image src={character.image} height={180} width={180} />
             </div>
-          );
-        })}
+            <div className={styles.contentWrapper}>
+              <h3>{character.name}</h3>
+              <p>{`${character.status} - ${character.species}`}</p>
+            </div>
+          </div>
+          <div className={styles.card}>
+            <div className={styles.imgWrapper}>
+              <h3>Origin</h3>
+            </div>
+            <div className={styles.contentWrapper}>
+              {origin && <h3>{origin.name}</h3>}
+              {origin && <p>{`Type - ${origin.type}`}</p>}
+              {origin && <p>{`Dimension - ${origin.dimension}`}</p>}
+              {origin && (
+                <p>{`Total number of Residents - ${origin.residents?.length}`}</p>
+              )}
+            </div>
+          </div>
+          <div className={styles.card}>
+            <div className={styles.imgWrapper}>
+              <h3>Location</h3>
+            </div>
+            <div className={styles.contentWrapper}>
+              {location && <h3>{location.name}</h3>}
+              {location && <p>{`Type - ${origin.type}`}</p>}
+              {location && <p>{`Dimension - ${origin.dimension}`}</p>}
+              {location && (
+                <p>{`Total number of Residents - ${location.residents?.length}`}</p>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className={classnames(styles.section, styles.episodes)}>
+          <Episodes episodes={episodes} />
+        </div>
       </div>
-    </div>
     </div>
   );
 }
@@ -147,11 +140,21 @@ export const getStaticProps: GetStaticProps = async (context) => {
           ...profile,
           location: location ?? {},
         };
+      } else {
+        const location = originAndLocationDetails[0];
+        profile = {
+          ...profile,
+          location: location ?? {},
+        };
       }
 
       profile = {
         ...profile,
-        episodes: episodes ? (Array.isArray(episodes) ? episodes : [episodes]) : []
+        episodes: episodes
+          ? Array.isArray(episodes)
+            ? episodes
+            : [episodes]
+          : [],
       };
       return {
         props: {

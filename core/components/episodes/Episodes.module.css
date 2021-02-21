@@ -1,0 +1,69 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 700px;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.container .titleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.container .titleContainer h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.4rem;
+}
+
+.container .episodeContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+.container .episodeContainer .episode {
+  display: flex;
+  margin: 0.5rem;
+  width: 400px;
+  height: 200px;
+  padding: 1.2rem;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  transition: transform .5s;
+}
+
+.container .episodeContainer .episode:hover {
+  border: 1px solid #0070f3;
+  color:#0070f3;
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.container .episodeContainer .episode .nameWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
+  align-items: center;
+  width: 200px;
+}
+
+.container .episodeContainer .episode .contentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  width: 250px;
+  padding: 10px;
+  word-wrap: break-word;
+}
+
+.container .paginationContainer {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
