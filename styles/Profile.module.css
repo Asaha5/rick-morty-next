@@ -4,7 +4,7 @@
   overflow: auto;
 }
 
-.grid {
+.container .grid {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -12,7 +12,7 @@
   width: 100%;
 }
 
-.grid .section {
+.container .grid .section {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +21,7 @@
   
 }
 
-.grid .section.episodes {
+.container .grid .section.episodes {
   max-height: 100%;
   max-width: 600px;
   overflow-y: auto;

@@ -43,10 +43,10 @@ export default function Profile({
             <h3>Origin</h3>
           </div>
           <div className={styles.contentWrapper}>
-            <h3>{origin.name}</h3>
-            <p>{origin.type}</p>
-            <p>{origin.dimension}</p>
-            <p>{`Total number of Residents - ${origin.residents?.length}`}</p>
+            {origin && <h3>{origin.name}</h3>}
+            {origin && <h3>{origin.type}</h3>}
+            {origin && <h3>{origin.dimension}</h3>}
+            {origin && <p>{`Total number of Residents - ${origin.residents?.length}`}</p>}
           </div>
         </div>
         <div className={styles.card}>
@@ -54,10 +54,10 @@ export default function Profile({
             <h3>Location</h3>
           </div>
           <div className={styles.contentWrapper}>
-            <h3>{location.name}</h3>
-            <p>{location.type}</p>
-            <p>{location.dimension}</p>
-            <p>{`Total number of Residents - ${location.residents?.length}`}</p>
+            {location && <h3>{location.name}</h3>}
+            {location && <h3>{location.type}</h3>}
+            {location && <h3>{location.dimension}</h3>}
+            {location && <p>{`Total number of Residents - ${location.residents?.length}`}</p>}
           </div>
         </div>
       </div>
