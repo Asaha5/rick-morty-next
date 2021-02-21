@@ -66,7 +66,7 @@ export default function Profile({
             </div>
           </div>
         </div>
-        <div className={classnames(styles.section, styles.episodes)}>
+        <div className={classnames(styles.section)}>
           <Episodes episodes={episodes} />
         </div>
       </div>
